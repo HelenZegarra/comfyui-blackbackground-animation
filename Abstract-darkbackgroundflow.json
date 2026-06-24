@@ -1,0 +1,111 @@
+{
+  "24": {
+    "inputs": {
+      "image": "b90d8ea69292bf606de3c4e31c4812e23e6ce44999ae64469683028cd6e8fef1.jpeg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "32": {
+    "inputs": {
+      "filename_prefix": "video/wan2.7_i2v",
+      "format": "mp4",
+      "codec": "auto",
+      "video": [
+        "33",
+        0
+      ]
+    },
+    "class_type": "SaveVideo",
+    "_meta": {
+      "title": "Save Video"
+    }
+  },
+  "33": {
+    "inputs": {
+      "model": "wan2.7-i2v",
+      "model.prompt": "chalk on black paper, pastel chalk drawing animated,\nchalk dust texture visible on every surface,\nrough grainy chalk strokes staying intact,\nhand-drawn chalk lines preserved,\nsubtle motion within a chalk drawing,\nheart chalk drawing gently pulsing,\nrose chalk sketch petals slowly opening and closing,\nchalk spiral rotating perceptibly,\nchalk eye blinking slowly,\nchalk butterfly wings barely moving,\nchalk smoke wisps drifting upward from the dagger,\nchalk watch moving in a ticking movement,\nshadows shifting within chalk drawing,\nchalk grain and roughness fully preserved throughout,\nno smoothing, chalk texture alive not realistic,\nslow hypnotic chalk animation, dark paper background,\nfilm grain, chalk imperfections intact,\nno camera movement, no zoom, no pan",
+      "model.negative_prompt": "realistic, photorealistic, 3D, CGI, smooth skin, smooth surfaces, clean edges,\ndigital art, oil painting, watercolor, acrylic,\nsmooth surfaces, clean edges, sharp definition,\nglossy, shiny, polished, blended smooth,\ncamera movement, zoom, pan, shake,\nbright light, neon, oversaturated colors,\nmorphing shapes, distortion, flickering,\nlifelike texture, natural skin, fabric texture,\nremoving chalk texture, removing grain,\nsmoothing out chalk strokes",
+      "model.resolution": "720P",
+      "model.duration": 10,
+      "seed": 1492673715,
+      "prompt_extend": true,
+      "watermark": false,
+      "first_frame": [
+        "120",
+        0
+      ]
+    },
+    "class_type": "Wan2ImageToVideoApi",
+    "_meta": {
+      "title": "Wan 2.7 Image to Video"
+    }
+  },
+  "108": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": 576,
+      "height": 0,
+      "crop": "disabled",
+      "image": [
+        "24",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "Upscale Image"
+    }
+  },
+  "109": {
+    "inputs": {
+      "target_width": 576,
+      "target_height": 1024,
+      "feathering": 40,
+      "upscale_method": "lanczos",
+      "image": [
+        "108",
+        0
+      ]
+    },
+    "class_type": "ImagePadForOutpaintTargetSize",
+    "_meta": {
+      "title": "Image Pad For Outpaint Target Size"
+    }
+  },
+  "120": {
+    "inputs": {
+      "prompt": "dark background, deep shadow, void, empty space, \npure darkness, no text, no writing, no letters, \npainterly texture, muted tones",
+      "prompt_upsampling": false,
+      "guidance": 3.5,
+      "steps": 20,
+      "seed": 947565985769562,
+      "image": [
+        "109",
+        0
+      ],
+      "mask": [
+        "109",
+        1
+      ]
+    },
+    "class_type": "FluxProFillNode",
+    "_meta": {
+      "title": "Flux.1 Fill Image"
+    }
+  },
+  "121": {
+    "inputs": {
+      "images": [
+        "120",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  }
+}
